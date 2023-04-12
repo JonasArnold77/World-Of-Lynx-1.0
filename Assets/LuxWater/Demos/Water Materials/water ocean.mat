@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: water ocean
   m_Shader: {fileID: 4800000, guid: ab6f7521bd72644388f2fc1112e74e7b, type: 3}
-  m_ShaderKeywords: GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_FROND GEOM_TYPE_LEAF _GERSTNERDISPLACEMENT
-    _PIXELSNAP_POINT
+  m_ShaderKeywords: GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_FROND GEOM_TYPE_LEAF USINGWATERVOLUME
+    _GERSTNERDISPLACEMENT _PIXELSNAP_POINT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -54,8 +54,8 @@ Material:
     - _CausticsEnabled: 1
     - _CausticsMaxDepth: 38
     - _CausticsScale: 5.69
-    - _CausticsSelfDistortion: 0.2
-    - _CausticsSpeed: 2.5
+    - _CausticsSelfDistortion: 0.15
+    - _CausticsSpeed: 3.06
     - _CausticsTiling: 0.17
     - _Culling: 0
     - _DeepFoamBlur: 2
@@ -94,12 +94,12 @@ Material:
     - _GerstnerPlanarNormalIntensity: 0.08
     - _GerstnerVertexIntensity: 0.2
     - _GerstnerVerticalIntensity: 0.148
-    - _Glossiness: 0.882
+    - _Glossiness: 0.757
     - _HeightBasedScatteringMax: 7.2
     - _HeightBasedScatteringPower: 1.62
     - _Help: 0
     - _HorizonOcclusion: 0
-    - _InvFade: 2.88
+    - _InvFade: 1.13
     - _InvFadeParameter: 0.56
     - _LuxWater_EdgeLength: 11
     - _LuxWater_Extrusion: 0.2

@@ -69,13 +69,13 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Lumin: 0
-    - _MaxLight: 1
+    - _MaxLight: 0.604
     - _Metallic: 0
-    - _MinLight: 0
+    - _MinLight: 0.075
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset: 0
-    - _OtlWidth: 2.22
+    - _Offset: -0.646
+    - _OtlWidth: 1.7
     - _Parallax: 0.02
     - _Segmented: 1
     - _ShnIntense: 0
@@ -85,8 +85,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Steps: 1.7
-    - _StpSmooth: 0
+    - _Steps: 5.9
+    - _StpSmooth: 0.698
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
