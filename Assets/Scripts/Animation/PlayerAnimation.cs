@@ -26,11 +26,12 @@ public class PlayerAnimation : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            _Animator.SetBool("Hit", true);
+            _Animator.Play("Melee Attack 1");
         }
-        else
-        {
-            _Animator.SetBool("Hit", false);
-        }
+    }
+
+    public void Attack()
+    {
+
     }
 }
