@@ -6,6 +6,13 @@ public class PlayerAnimation : MonoBehaviour
 {
 
     private Animator _Animator;
+    public static PlayerAnimation Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +31,15 @@ public class PlayerAnimation : MonoBehaviour
             _Animator.SetBool("Run", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            _Animator.Play("Melee Attack 1");
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    _Animator.Play("Melee Attack 1");
+        //}
+    }
+
+    public void PlayNextAttack()
+    {
+        _Animator.Play(ComboManager.Instance._FirstCombo[ComboManager.Instance.ComboCounter].name); 
     }
 
     public void Attack()

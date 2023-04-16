@@ -6,7 +6,9 @@ public class Attack : MonoBehaviour
 {
     private Animator _Animator;
     private bool IsInAttackingTimeWindow;
-    private PlayerAnimation _PlayerAnimation;
+    private bool IsInComboTimeWindow;
+
+    private bool CheckForComboTimeWindowCorutineIsRunning;
 
     private void Start()
     {
@@ -16,11 +18,19 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (IsInAttackingTimeWindow)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (CheckForComboTimeWindow())
+            StartCoroutine(CheckForComboTimeWindow());
+
+            PlayerAnimation.Instance.PlayNextAttack();
+
+            if (IsInComboTimeWindow)
             {
-                //_PlayerAnimation.PlayNextAttack
+                ComboManager.Instance.IncrementComboCounter();
+            }
+            else
+            {
+                ComboManager.Instance.ResetComboCounter();
             }
         }
     }
@@ -37,29 +47,35 @@ public class Attack : MonoBehaviour
         IsInAttackingTimeWindow = false;
     }
 
-    private bool CheckForComboTimeWindow()
+    private IEnumerator CheckForComboTimeWindow()
     {
-        if(GetCurrentAnimatorTime() >= GetDurationOfAnimatorClip() / 2 && )
+        if (!CheckForComboTimeWindowCorutineIsRunning)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                return true;
-            }
+            CheckForComboTimeWindowCorutineIsRunning = true;
+
+            yield return new WaitUntil(() => GetCurrentAnimatorTime() >= GetDurationOfAnimatorClip() / 2);
+            IsInComboTimeWindow = true;
+            yield return new WaitUntil(() => GetCurrentAnimatorTime() == GetDurationOfAnimatorClip());
+
+            yield return new WaitForSeconds(0.5f);
+            IsInComboTimeWindow = false;
+            ComboManager.Instance.ResetComboCounter();
+
+            CheckForComboTimeWindowCorutineIsRunning = false;
         }
-        return false;
     }
 
-    public float GetCurrentAnimatorTime(int layer = 2)
+    public float GetCurrentAnimatorTime(int layer = 1)
     {
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
-        float currentTime = animState.normalizedTime % 1;
+        float currentTime = animState.normalizedTime;
         return currentTime;
     }
 
-    public float GetDurationOfAnimatorClip(int layer = 2)
+    public float GetDurationOfAnimatorClip(int layer = 1)
     {
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
-        float duration = animState.length % 1;
+        float duration = animState.length;
         return duration;
     }
 }
