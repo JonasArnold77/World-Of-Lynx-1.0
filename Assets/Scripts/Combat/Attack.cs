@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour
     private Animator _Animator;
     private bool IsInAttackingTimeWindow;
     private bool IsInComboTimeWindow;
+    private bool FirstHit;
 
     private bool CheckForComboTimeWindowCorutineIsRunning;
 
@@ -18,19 +19,24 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (CheckIfAnimatorIsPlayingAttack())
         {
             StartCoroutine(CheckForComboTimeWindow());
+        }
 
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             PlayerAnimation.Instance.PlayNextAttack();
 
-            if (IsInComboTimeWindow)
+            if (IsInComboTimeWindow || !FirstHit)
             {
                 ComboManager.Instance.IncrementComboCounter();
+                FirstHit = true;
             }
             else
             {
                 ComboManager.Instance.ResetComboCounter();
+                FirstHit = false;
             }
         }
     }
@@ -53,15 +59,31 @@ public class Attack : MonoBehaviour
         {
             CheckForComboTimeWindowCorutineIsRunning = true;
 
+            //if I hit before the combo countr should be resetted
+            //yield return new WaitWhile
+
             yield return new WaitUntil(() => GetCurrentAnimatorTime() >= GetDurationOfAnimatorClip() / 2);
             IsInComboTimeWindow = true;
-            yield return new WaitUntil(() => GetCurrentAnimatorTime() == GetDurationOfAnimatorClip());
+            yield return new WaitUntil(() => GetCurrentAnimatorTime()>=GetDurationOfAnimatorClip());
 
             yield return new WaitForSeconds(0.5f);
             IsInComboTimeWindow = false;
             ComboManager.Instance.ResetComboCounter();
-
+            FirstHit = false;
             CheckForComboTimeWindowCorutineIsRunning = false;
+        }
+    }
+
+    public bool CheckIfAnimatorIsPlayingAttack(int layer = 1)
+    {
+        AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
+        if (animState.IsTag("Attack"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -69,6 +91,7 @@ public class Attack : MonoBehaviour
     {
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
         float currentTime = animState.normalizedTime;
+        Debug.Log("Time: " + animState.normalizedTime);
         return currentTime;
     }
 

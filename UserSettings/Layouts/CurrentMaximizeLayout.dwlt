@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 58385
+  controlID: 63708
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 58386
+  controlID: 63709
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 58387
+  controlID: 63710
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -653,11 +653,11 @@ MonoBehaviour:
     - e00: 0.7378263
       e01: 0
       e02: 0
-      e03: -60.840866
+      e03: -60.84085
       e10: 0
       e11: 0.7378263
       e12: 0
-      e13: -76.881836
+      e13: -113.78197
       e20: 0
       e21: 0
       e22: 1
@@ -695,7 +695,7 @@ MonoBehaviour:
   m_MiniTool: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_CurrentEditor: 1
+  m_CurrentEditor: 0
   m_LayerEditor:
     m_SelectedLayerIndex: 1
 --- !u!114 &10
