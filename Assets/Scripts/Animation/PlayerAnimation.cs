@@ -7,6 +7,10 @@ public class PlayerAnimation : MonoBehaviour
 {
 
     private Animator _Animator;
+    private bool _IsPlayingAttack;
+
+    private Coroutine _IsPlayingAttackCoroutine;
+
     public static PlayerAnimation Instance;
 
     private void Awake()
@@ -32,21 +36,31 @@ public class PlayerAnimation : MonoBehaviour
             _Animator.SetBool("Run", false);
         }
 
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    _Animator.Play("Melee Attack 1");
-        //}
+        CheckIfAttackIsPlaying();
     }
 
-    public void PlayNextAttack(EControls control)
+    public IEnumerator PlayNextAttack(EControls control)
     {
+        if (CheckIfAttackIsPlaying())
+        {
+            yield return new WaitUntil(() => !_IsPlayingAttack);
+        }
         var combo = ComboManager.Instance.Combos.Where(c => c.InputType == control).FirstOrDefault();
         _Animator.Play(combo.ComboList[combo.Counter].name);
         combo.IncreaseCounter();
     }
-
-    public void Attack()
+    public bool CheckIfAttackIsPlaying(int layer = 1)
     {
-
+        AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
+        if (animState.IsTag("Attack"))
+        {
+            _IsPlayingAttack = true;
+            return true;
+        }
+        else
+        {
+            _IsPlayingAttack = false;
+            return false;
+        }
     }
 }

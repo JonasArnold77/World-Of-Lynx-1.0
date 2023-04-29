@@ -10,10 +10,13 @@ public class Attack : MonoBehaviour
     private bool IsInComboTimeWindow;
     private bool FirstHit;
 
-    private Coroutine WaitForResettingCoroutineÍnstance;
+    private bool _IsPlayingAttack;
 
-    private bool CheckForComboTimeWindowCorutineIsRunning;
-    private bool WaitForResettingCoroutineIsActive;
+    private Coroutine _WaitForResettingCoroutineÍnstance;
+    private Coroutine _AttackIsHappenCoroutineInstance;
+
+    private bool _CheckForComboTimeWindowCorutineIsRunning;
+    private bool _WaitForResettingCoroutineIsActive;
 
     private void Start()
     {
@@ -28,7 +31,7 @@ public class Attack : MonoBehaviour
         CalculateCombo();
     }
 
-    public void CalculateCombo()
+    public IEnumerator CalculateCombo()
     {
         //if (CheckIfAnimatorIsPlayingAttack())
         //{
@@ -36,28 +39,30 @@ public class Attack : MonoBehaviour
         //}
 
 
-        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.LightHit)))
+        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.LightHit)) && !CheckIfPossibleToAttack())
         {
             ComboManager.Instance.ResetAllComboCountersInsteadOfSelected(EControls.LightHit);
-            if (WaitForResettingCoroutineIsActive)
+            if (_WaitForResettingCoroutineIsActive)
             {
-                StopCoroutine(WaitForResettingCoroutineÍnstance);
+                StopCoroutine(_WaitForResettingCoroutineÍnstance);
             }
-            PlayerAnimation.Instance.PlayNextAttack(EControls.LightHit);
-            WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.LightHit));
+
+            _AttackIsHappenCoroutineInstance = StartCoroutine(PlayerAnimation.Instance.PlayNextAttack(EControls.LightHit));
+            _WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.LightHit));
 
             InputManager.Instance.CollectingInputsList.Add(EControls.LightHit);
         }
 
-        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.HardHit)))
+        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.HardHit)) && !CheckIfPossibleToAttack())
         {
             ComboManager.Instance.ResetAllComboCountersInsteadOfSelected(EControls.HardHit);
-            if (WaitForResettingCoroutineIsActive)
+            if (_WaitForResettingCoroutineIsActive)
             {
-                StopCoroutine(WaitForResettingCoroutineÍnstance);
+                StopCoroutine(_WaitForResettingCoroutineÍnstance);
             }
-            PlayerAnimation.Instance.PlayNextAttack(EControls.HardHit);
-            WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.HardHit));
+
+            _AttackIsHappenCoroutineInstance = StartCoroutine(PlayerAnimation.Instance.PlayNextAttack(EControls.HardHit));
+            _WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.HardHit));
 
             InputManager.Instance.CollectingInputsList.Add(EControls.LightHit);
         }
@@ -65,11 +70,11 @@ public class Attack : MonoBehaviour
 
     private IEnumerator WaitForResettingCoroutine(EControls control)
     {
-        WaitForResettingCoroutineIsActive = true;
+        _WaitForResettingCoroutineIsActive = true;
         yield return new WaitForSeconds(2f);
         ComboManager.Instance.Combos.Where(c => c.InputType == control).FirstOrDefault().ResetCounter();
         InputManager.Instance.CollectingInputsList.Clear();
-        WaitForResettingCoroutineIsActive = false;
+        _WaitForResettingCoroutineIsActive = false;
     }
 
 
@@ -87,9 +92,9 @@ public class Attack : MonoBehaviour
 
     private IEnumerator CheckForComboTimeWindow()
     {
-        if (!CheckForComboTimeWindowCorutineIsRunning)
+        if (!_CheckForComboTimeWindowCorutineIsRunning)
         {
-            CheckForComboTimeWindowCorutineIsRunning = true;
+            _CheckForComboTimeWindowCorutineIsRunning = true;
 
             //if I hit before the combo countr should be resetted
             //yield return new WaitWhile
@@ -102,19 +107,27 @@ public class Attack : MonoBehaviour
             IsInComboTimeWindow = false;
             ComboManager.Instance.ResetComboCounter();
             FirstHit = false;
-            CheckForComboTimeWindowCorutineIsRunning = false;
+            _CheckForComboTimeWindowCorutineIsRunning = false;
         }
     }
 
-    public bool CheckIfAnimatorIsPlayingAttack(int layer = 1)
+    public bool CheckIfPossibleToAttack(int layer = 1)
     {
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
         if (animState.IsTag("Attack"))
         {
+            if(animState.normalizedTime > animState.length * 0.6f)
+            {
+                _IsPlayingAttack = false;
+                return false;
+            }
+
+            _IsPlayingAttack = true;
             return true;
         }
         else
         {
+            _IsPlayingAttack = false;
             return false;
         }
     }
