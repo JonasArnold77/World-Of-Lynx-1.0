@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EControls
+public enum EWeaponType
 {
-    HardHit,
-    LightHit,
-    Mage
+    OneHanded,
+    TwoHanded,
+    Magic
 }

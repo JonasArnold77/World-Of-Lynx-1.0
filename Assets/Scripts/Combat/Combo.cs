@@ -9,7 +9,7 @@ public class Combo
     public List<AnimationClip> ComboList;
     public int Counter;
     public EControls InputType;
-
+    public EWeaponType WeaponType;
     public void IncreaseCounter()
     {
         if(Counter == ComboList.Count - 1)

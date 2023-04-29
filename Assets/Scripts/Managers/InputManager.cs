@@ -23,6 +23,10 @@ public class InputManager : MonoBehaviour
         {
             return KeyCode.Mouse1;
         }
+        if (control == EControls.Mage)
+        {
+            return KeyCode.F;
+        }
         return null;
     }
 

@@ -1776,6 +1776,7 @@ Transform:
   - {fileID: 747983307}
   - {fileID: 2067366524}
   - {fileID: 474983990}
+  - {fileID: 594351330}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1951,6 +1952,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2016594787934147927, guid: e37e099fbec8e814897ecc731e28e5b3, type: 3}
   m_PrefabInstance: {fileID: 581129558}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &594351329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 594351330}
+  - component: {fileID: 594351331}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &594351330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594351329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 538914378}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &594351331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594351329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504ea1e0e3b344a4eaca786157128e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActualWeaponType: 0
 --- !u!1001 &613538878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2261,7 +2307,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
-  m_Intensity: 6.27
+  m_Intensity: 13.31
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5421,14 +5467,16 @@ MonoBehaviour:
     - {fileID: 7400000, guid: 6a82dc7f6e297f74284950ac02b05c43, type: 2}
     Counter: 0
     InputType: 1
+    WeaponType: 0
   - ComboList:
     - {fileID: 7400000, guid: 151b7e73a54230944a820ede89fdad9f, type: 2}
     - {fileID: 7400000, guid: 151b7e73a54230944a820ede89fdad9f, type: 2}
     - {fileID: 7400000, guid: 151b7e73a54230944a820ede89fdad9f, type: 2}
     Counter: 0
     InputType: 0
+    WeaponType: 0
   SuperCombos:
-  - InputList: 00000000010000000000000000000000
+  - InputList: 01000000010000000000000000000000
   ActualSuperCombo:
     InputList: 
   ComboCounter: 0

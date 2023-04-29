@@ -46,11 +46,11 @@ public class Attack : MonoBehaviour
                 StopCoroutine(_WaitForResettingCoroutineÍnstance);
             }
 
+            //have to be before attack coroutine
             _WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.LightHit));
             yield return StartCoroutine(PlayerAnimation.Instance.PlayNextAttack(EControls.LightHit));
-            
 
-            InputManager.Instance.CollectingInputsList.Add(EControls.LightHit);
+            ComboManager.Instance.CheckForSuperCombo(EControls.LightHit);
         }
 
         if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.HardHit)) && !CheckIfPossibleToAttack())
@@ -60,11 +60,12 @@ public class Attack : MonoBehaviour
             {
                 StopCoroutine(_WaitForResettingCoroutineÍnstance);
             }
-
-            _AttackIsHappenCoroutineInstance = StartCoroutine(PlayerAnimation.Instance.PlayNextAttack(EControls.HardHit));
+            
+            //have to be before attack coroutine
             _WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.HardHit));
+            yield return StartCoroutine(PlayerAnimation.Instance.PlayNextAttack(EControls.HardHit));
 
-            InputManager.Instance.CollectingInputsList.Add(EControls.LightHit);
+            ComboManager.Instance.CheckForSuperCombo(EControls.HardHit);
         }
         _ComboCoroutineIsRunning = false;
     }

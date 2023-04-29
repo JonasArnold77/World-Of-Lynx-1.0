@@ -7,4 +7,10 @@ using UnityEngine;
 public class SuperCombo
 {
     public List<EControls> InputList;
+    public int Counter;
+
+    public void Effect()
+    {
+        Debug.Log("Combo Done");
+    }
 }

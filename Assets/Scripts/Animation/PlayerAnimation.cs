@@ -45,7 +45,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             yield return new WaitUntil(() => !_IsPlayingAttack);
         }
-        var combo = ComboManager.Instance.Combos.Where(c => c.InputType == control).FirstOrDefault();
+        var combo = ComboManager.Instance.Combos.Where(c => c.InputType == control && c.WeaponType == WeaponManager.Instance.ActualWeaponType).FirstOrDefault();
         _Animator.Play(combo.ComboList[combo.Counter].name);
         combo.IncreaseCounter();
     }
