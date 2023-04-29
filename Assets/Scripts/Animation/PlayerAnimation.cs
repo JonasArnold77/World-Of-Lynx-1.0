@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -37,9 +38,11 @@ public class PlayerAnimation : MonoBehaviour
         //}
     }
 
-    public void PlayNextAttack()
+    public void PlayNextAttack(EControls control)
     {
-        _Animator.Play(ComboManager.Instance._FirstCombo[ComboManager.Instance.ComboCounter].name); 
+        var combo = ComboManager.Instance.Combos.Where(c => c.InputType == control).FirstOrDefault();
+        _Animator.Play(combo.ComboList[combo.Counter].name);
+        combo.IncreaseCounter();
     }
 
     public void Attack()

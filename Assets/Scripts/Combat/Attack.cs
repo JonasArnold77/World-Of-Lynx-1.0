@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -9,37 +10,68 @@ public class Attack : MonoBehaviour
     private bool IsInComboTimeWindow;
     private bool FirstHit;
 
+    private Coroutine WaitForResettingCoroutineÍnstance;
+
     private bool CheckForComboTimeWindowCorutineIsRunning;
+    private bool WaitForResettingCoroutineIsActive;
 
     private void Start()
     {
         InventoryManager.Instance.ActualWeapon.GetComponent<Collider>().enabled = false;
         _Animator = GetComponent<Animator>();
+
+
     }
 
     private void Update()
     {
-        if (CheckIfAnimatorIsPlayingAttack())
+        CalculateCombo();
+    }
+
+    public void CalculateCombo()
+    {
+        //if (CheckIfAnimatorIsPlayingAttack())
+        //{
+        //    StartCoroutine(CheckForComboTimeWindow());
+        //}
+
+
+        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.LightHit)))
         {
-            StartCoroutine(CheckForComboTimeWindow());
+            ComboManager.Instance.ResetAllComboCountersInsteadOfSelected(EControls.LightHit);
+            if (WaitForResettingCoroutineIsActive)
+            {
+                StopCoroutine(WaitForResettingCoroutineÍnstance);
+            }
+            PlayerAnimation.Instance.PlayNextAttack(EControls.LightHit);
+            WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.LightHit));
+
+            InputManager.Instance.CollectingInputsList.Add(EControls.LightHit);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.HardHit)))
         {
-            PlayerAnimation.Instance.PlayNextAttack();
+            ComboManager.Instance.ResetAllComboCountersInsteadOfSelected(EControls.HardHit);
+            if (WaitForResettingCoroutineIsActive)
+            {
+                StopCoroutine(WaitForResettingCoroutineÍnstance);
+            }
+            PlayerAnimation.Instance.PlayNextAttack(EControls.HardHit);
+            WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.HardHit));
 
-            if (IsInComboTimeWindow || !FirstHit)
-            {
-                ComboManager.Instance.IncrementComboCounter();
-                FirstHit = true;
-            }
-            else
-            {
-                ComboManager.Instance.ResetComboCounter();
-                FirstHit = false;
-            }
+            InputManager.Instance.CollectingInputsList.Add(EControls.LightHit);
         }
     }
+
+    private IEnumerator WaitForResettingCoroutine(EControls control)
+    {
+        WaitForResettingCoroutineIsActive = true;
+        yield return new WaitForSeconds(2f);
+        ComboManager.Instance.Combos.Where(c => c.InputType == control).FirstOrDefault().ResetCounter();
+        InputManager.Instance.CollectingInputsList.Clear();
+        WaitForResettingCoroutineIsActive = false;
+    }
+
 
     public void SetColliderActive()
     {

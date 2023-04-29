@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -13,4 +14,10 @@ public class InventoryManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    public UnityAction GetInputFromControlAction()
+    {
+        return null;
+    }
+
 }

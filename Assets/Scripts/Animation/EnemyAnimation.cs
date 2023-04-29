@@ -15,7 +15,7 @@ public class EnemyAnimation : MonoBehaviour
 
     public void PlayingHitAnimation()
     {
-        if (_Animator.GetBool("Hit"))
+       if (_Animator.GetBool("Hit"))
         {
             _Animator.SetBool("InterruptHit", true);
         }
