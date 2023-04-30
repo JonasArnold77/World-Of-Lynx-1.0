@@ -29,10 +29,24 @@ public class ComboManager : MonoBehaviour
 
     public void CheckForSuperCombo(EControls control)
     {
+        //if (actualSuperCombosInRace.Any(a => a.InputList[a.Counter] != control)) {
+        //    actualSuperCombosInRace.Where(a => a.InputList[a.Counter] != control).ToList().ForEach(a2 => a2.Counter = 0);
+        //    return;
+        //}
+
+        
+
         actualSuperCombosInRace = SuperCombos.Where(s => s.InputList[s.Counter] == control).ToList();
+        SuperCombos.Where(s => s.InputList[s.Counter] != control).ToList().ForEach(s2 => s2.Counter = 0);
+
         actualSuperCombosInRace.ForEach(a => a.Counter++);
         actualSuperCombosInRace.Where(a => a.Counter == a.InputList.Count).ToList().ForEach(a2 => a2.Effect());
-        actualSuperCombosInRace.Where(a => a.Counter == a.InputList.Count).ToList().ForEach(a2 => a2.Counter = 0);
+
+        //If you want to reset every supercombo after one is done
+        if (actualSuperCombosInRace.Any(a => a.Counter == a.InputList.Count)) actualSuperCombosInRace.ForEach(a2 => a2.Counter = 0);
+
+        //If you don´t want to reset every supercombo after one is done
+        //actualSuperCombosInRace.Where(a => a.Counter == a.InputList.Count).ToList().ForEach(a2 => a2.Counter = 0); 
     }
 
     public void ResetAllComboCountersInsteadOfSelected(EControls control)

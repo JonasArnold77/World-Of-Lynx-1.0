@@ -5462,9 +5462,9 @@ MonoBehaviour:
   Combos:
   - ComboList:
     - {fileID: 7400000, guid: 6a82dc7f6e297f74284950ac02b05c43, type: 2}
+    - {fileID: 7400000, guid: 151b7e73a54230944a820ede89fdad9f, type: 2}
     - {fileID: 7400000, guid: 6a82dc7f6e297f74284950ac02b05c43, type: 2}
-    - {fileID: 7400000, guid: 6a82dc7f6e297f74284950ac02b05c43, type: 2}
-    - {fileID: 7400000, guid: 6a82dc7f6e297f74284950ac02b05c43, type: 2}
+    - {fileID: 7400000, guid: 151b7e73a54230944a820ede89fdad9f, type: 2}
     Counter: 0
     InputType: 1
     WeaponType: 0
@@ -5477,8 +5477,13 @@ MonoBehaviour:
     WeaponType: 0
   SuperCombos:
   - InputList: 01000000010000000000000000000000
+    Counter: 0
+  - InputList: 00000000000000000100000001000000
+    Counter: 0
+  actualSuperCombosInRace: []
   ActualSuperCombo:
     InputList: 
+    Counter: 0
   ComboCounter: 0
 --- !u!1 &2103155930 stripped
 GameObject:
