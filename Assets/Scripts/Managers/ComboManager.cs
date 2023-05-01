@@ -29,13 +29,6 @@ public class ComboManager : MonoBehaviour
 
     public void CheckForSuperCombo(EControls control)
     {
-        //if (actualSuperCombosInRace.Any(a => a.InputList[a.Counter] != control)) {
-        //    actualSuperCombosInRace.Where(a => a.InputList[a.Counter] != control).ToList().ForEach(a2 => a2.Counter = 0);
-        //    return;
-        //}
-
-        
-
         actualSuperCombosInRace = SuperCombos.Where(s => s.InputList[s.Counter] == control).ToList();
         SuperCombos.Where(s => s.InputList[s.Counter] != control).ToList().ForEach(s2 => s2.Counter = 0);
 
