@@ -16,4 +16,5 @@ MonoBehaviour:
   m_questAssets:
   - {fileID: 11400000, guid: 715d3105c33178843b81e7cd2d6ef58e, type: 2}
   - {fileID: 11400000, guid: 5d1cdb8f442d8bc48b5d72be86246dc8, type: 2}
+  - {fileID: 0}
   m_images: []
