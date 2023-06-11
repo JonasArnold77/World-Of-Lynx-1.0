@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 114276960199758728}
   - {fileID: 114078346595848474}
   - {fileID: 114594694937452786}
+  - {fileID: 4431802805033601041}
 --- !u!114 &114004672702701984
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -36,11 +37,11 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 0
+    overrideState: 1
     value: 1
   intensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.92
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -1524,3 +1525,37 @@ MonoBehaviour:
   fastMode:
     overrideState: 0
     value: 0
+--- !u!114 &4431802805033601041
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e3111086a328a4882e173a46656a13, type: 3}
+  m_Name: PostProcessOutline
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  color:
+    overrideState: 1
+    value: {r: 0, g: 0, b: 0, a: 1}
+  scale:
+    overrideState: 1
+    value: 4
+  depthThreshold:
+    overrideState: 0
+    value: 0.2
+  normalThreshold:
+    overrideState: 0
+    value: 0.4
+  depthNormalThreshold:
+    overrideState: 0
+    value: 0.5
+  depthNormalThresholdScale:
+    overrideState: 0
+    value: 7
