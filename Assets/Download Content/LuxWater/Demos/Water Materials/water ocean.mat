@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: water ocean
   m_Shader: {fileID: 4800000, guid: ab6f7521bd72644388f2fc1112e74e7b, type: 3}
-  m_ShaderKeywords: GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_FROND GEOM_TYPE_LEAF _GERSTNERDISPLACEMENT
-    _PIXELSNAP_POINT
+  m_ShaderKeywords: GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_FROND GEOM_TYPE_LEAF USINGWATERVOLUME
+    _GERSTNERDISPLACEMENT _PIXELSNAP_POINT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
