@@ -8,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ToonTerrain
-  m_Shader: {fileID: 4800000, guid: 481153b840b6e408da95e6afbe176397, type: 3}
+  m_Shader: {fileID: 10505, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -89,6 +89,7 @@ Material:
     - _RimBlend: 0
     - _RimThreshold: 0.172
     - _Segmented: 1
+    - _Shininess: 0.078125
     - _ShnIntense: 0
     - _ShnOverlap: 0
     - _ShnRange: 0.15
@@ -104,11 +105,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Color: {r: 0.7264151, g: 0.6804481, b: 0.41391954, a: 1}
+    - _Color: {r: 0.5566038, g: 0.5216473, b: 0.31190816, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _OtlColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0.8301887, g: 0.8098256, b: 0.8098256, a: 1}
     - _ShnColor: {r: 1, g: 1, b: 0, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
