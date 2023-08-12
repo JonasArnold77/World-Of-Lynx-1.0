@@ -6,6 +6,7 @@ public class WeaponManager : MonoBehaviour
 {
     public static WeaponManager Instance;
     public EWeaponType ActualWeaponType;
+    public Sword ActualWeapon;
 
     private void Awake()
     {
