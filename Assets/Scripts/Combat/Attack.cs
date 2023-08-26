@@ -95,7 +95,6 @@ public class Attack : MonoBehaviour
     {
         InventoryManager.Instance.ActualWeapon.GetComponent<Collider>().enabled = true;
         IsInAttackingTimeWindow = true;
-        StartPoint = WeaponManager.Instance.ActualWeapon.TipOfTheSword.transform.position;
     }
 
     public void SetColliderInactive()
@@ -104,44 +103,44 @@ public class Attack : MonoBehaviour
         IsInAttackingTimeWindow = false;
     }
 
-    public Vector3 GetSwordDirection(EnemyAnimation enemyAnimation)
-    {
-        var startPointFlat = new Vector3(StartPoint.x, StartPoint.y, 0);
-        var endPointFlat = new Vector3(EndPoint.x, EndPoint.y, 0);
-        Vector3 direction = endPointFlat - startPointFlat;
-        direction = direction.normalized;
+    //public Vector3 GetSwordDirection(EnemyAnimation enemyAnimation)
+    //{
+    //    var startPointFlat = new Vector3(StartPoint.x, StartPoint.y, 0);
+    //    var endPointFlat = new Vector3(EndPoint.x, EndPoint.y, 0);
+    //    Vector3 direction = endPointFlat - startPointFlat;
+    //    direction = direction.normalized;
 
-        //Decide between up and down and left and right
-        if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-        {
-            //Decide between Left and Right
-            if(direction.x > 0)
-            {
-                Debug.Log("Hit to right");
-                enemyAnimation.GetHitDirection(new Vector3(1, 0, 0));
-                return new Vector3(1,0,0);
-            }
-            else
-            {
-                Debug.Log("Hit to left");
-                enemyAnimation.GetHitDirection(new Vector3(-1, 0, 0));
-                return new Vector3(-1, 0, 0);
-            }
-        }
-        else
-        {
-            if (direction.y > 0)
-            {
-                Debug.Log("Hit to Up");
-                enemyAnimation.GetHitDirection(new Vector3(0, 1, 0));
-                return new Vector3(0, 1, 0);
-            }
-            else
-                Debug.Log("Hit to Down");
-                enemyAnimation.GetHitDirection(new Vector3(0, -1, 0));
-                return new Vector3(0, -1, 0);
-            }
-        }
+    //    //Decide between up and down and left and right
+    //    if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+    //    {
+    //        //Decide between Left and Right
+    //        if(direction.x > 0)
+    //        {
+    //            Debug.Log("Hit to right");
+    //            enemyAnimation.GetHitDirection(new Vector3(1, 0, 0));
+    //            return new Vector3(1,0,0);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("Hit to left");
+    //            enemyAnimation.GetHitDirection(new Vector3(-1, 0, 0));
+    //            return new Vector3(-1, 0, 0);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (direction.y > 0)
+    //        {
+    //            Debug.Log("Hit to Up");
+    //            enemyAnimation.GetHitDirection(new Vector3(0, 1, 0));
+    //            return new Vector3(0, 1, 0);
+    //        }
+    //        else
+    //            Debug.Log("Hit to Down");
+    //            enemyAnimation.GetHitDirection(new Vector3(0, -1, 0));
+    //            return new Vector3(0, -1, 0);
+    //        }
+    //    }
 
     private IEnumerator CheckForComboTimeWindow()
     {
