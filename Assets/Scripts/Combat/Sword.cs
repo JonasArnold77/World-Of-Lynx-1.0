@@ -41,6 +41,8 @@ public class Sword : MonoBehaviour
         {
             hitStartPosition = WeaponManager.Instance.ActualWeapon.TipOfTheSword.position;
             collision.gameObject.GetComponent<EnemyAnimation>().StartPointOfHit = collision.contacts[0].point;
+            collision.gameObject.GetComponent<EnemyAnimation>().PlayingHitAnimation();
+            StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
         } 
     }
 
@@ -51,8 +53,7 @@ public class Sword : MonoBehaviour
             hitEndPosition = WeaponManager.Instance.ActualWeapon.TipOfTheSword.position;
             //collision.gameObject.GetComponent<EnemyAnimation>().EndPointOfHit = collision.contacts.LastOrDefault().point;
             //collision.gameObject.GetComponent<EnemyAnimation>().GetHitDirection(collision.gameObject.transform.forward);
-            collision.gameObject.GetComponent<EnemyAnimation>().PlayingHitAnimation();
-            StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
+            
         }
     }
 }
