@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum Direction
 {
@@ -119,10 +120,15 @@ public class EnemyAnimation : MonoBehaviour
             }
             else
             {
+                if(GetComponent<NavMeshAgent>() != null)
+                {
+                    GetComponent<NavMeshAgent>().enabled = false;
+                }
                 rigidbody.isKinematic = false;
                 //rigidbody.AddForce(-transform.up * 75, ForceMode.Impulse);
                 rigidbody.AddForce(hitDirection.normalized * 30, ForceMode.Impulse);
                 //rigidbody.AddTorque(new Vector3(1, 1, 1) * 1000, ForceMode.Impulse);
+
             }
 
             
